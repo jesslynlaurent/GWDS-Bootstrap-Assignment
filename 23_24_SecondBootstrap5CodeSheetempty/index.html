@@ -6,7 +6,20 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 
+
+  <style>
+    #map {
+      height: 400px;
+      width: 100%;
+      border-radius: 8px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+
+    }
+  </style>
 
     <!-- TITLE GOES HERE -->
 
@@ -48,7 +61,7 @@
                   <li><a class="dropdown-item" href="#">Features</a></li>
                 </ul>
               <li class="nav-item">
-                <a class="nav-link" href="#">Contact Us</a>
+                <a class="nav-link" href="#">Contact</a>
               
               </li>
               <!-- <li class="nav-item">
@@ -76,7 +89,7 @@
     <main>
 
         <div class="container-fluid py-3">
-            <div id="carouselExampleAutoplaying" class="carousel slide" data-bs-ride="carousel">
+            <div id="carouselExampleAutoplaying"  class="carousel slide" data-bs-ride="carousel">
                 <div class="carousel-inner">
                   <div class="carousel-item active">
                     <img src="images/bike1.jpeg" class="d-block w-100" alt="...">
@@ -99,13 +112,52 @@
               </div>
             </div>
             <div class="container py-3">
-                <h1 class="display-1 text-center">Safe Transportation</h1>
-
-            </div>
+                <h1 class="display-1 text-center">Safe & Healthier</h1>
+                <p class="lead text-center">🚲 Ride the City with Go-Go Bike! Fast, affordable, and eco-friendly!</p>
+              </div>
+    
     
 
         <!-- Beginning of row col -->
 
+        <div class="container mt-5">
+          <div class="row">
+            <div class="col-md-4">
+              <h2>Location</h2>
+              <p>Find a Go-Go Bike Station Near You</p>
+              <div class="col-md-8"> </div>
+              <div id="map"></div>
+            </div>
+            <div class="col">
+              Rides
+            </div>
+            <div class="col">
+              Contact us
+            </div>
+          </div>
+        </div>
+
+    <script>
+      const map = L.map('map').setView([37.7749, -122.4194], 13);
+
+  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+  attribution: '&copy; OpenStreetMap contributors'
+  }).addTo(map);
+
+const locations = [
+  { lat: 51.4545, lng: -2.5879, name: 'Go-Go Bike Station 1' },
+  { lat: 51.4605, lng: -2.5949, name: 'Go-Go Bike Station 2' },
+  { lat: 51.4485, lng: -2.5809, name: 'Go-Go Bike Station 3' },
+  { lat: 51.4565, lng: -2.5739, name: 'Go-Go Bike Station 4' }
+];
+
+locations.forEach(location => {
+  L.marker([location.lat, location.lng])
+    .addTo(map)
+    .bindPopup(`<b>${location.name}</b>`); 
+});
+
+        </script>
        
         <!-- End of row col -->
 
@@ -139,7 +191,7 @@
 
 
 
-    <script src="js/bootstrap.min.js"></script>
+    
 
 </body>
 
