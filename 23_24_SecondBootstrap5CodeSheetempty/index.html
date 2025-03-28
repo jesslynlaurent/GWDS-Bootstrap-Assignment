@@ -15,26 +15,26 @@
     #map {
     height: 400px;
     width: 100%;
-    border-radius: 8px;
+    border-radius: 6px;
     box-shadow: 0 4px 10px grey;
     }
 
     .footer {
     background-color: black;
     color: white;
-    padding: 15px 0;
+    padding: 20px 0;
     font-size: 14px;
     text-align: right;
     }
 
   .footer-container {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 0 20px;
-  }
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+    }
 
 
 
@@ -98,7 +98,6 @@
 
     <!-- this begins the main code -->
     <main>
-
         <div class="container-fluid py-3">
             <div id="carouselExampleAutoplaying"  class="carousel slide" data-bs-ride="carousel">
                 <div class="carousel-inner">
@@ -111,6 +110,7 @@
                   <div class="carousel-item">
                     <img src="images/bike3.jpeg" class="d-block w-100" alt="...">
                   </div>
+                </container>
                 </div>
                 <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide="prev">
                   <span class="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -126,7 +126,7 @@
                 <h1 class="display-1 text-center">Safe & Healthier</h1>
                 <p class="lead text-center">🚲 Ride the City with Go-Go Bike! Fast, affordable, and eco-friendly!</p>
               </div>
-    
+           </div>
     
 
         <!-- Beginning of row col -->
@@ -140,10 +140,10 @@
               <div id="map"></div>
             </div>
             <div class="col">
-              Rides
+              <h2>Rides</h2>
             </div>
             <div class="col">
-              Contact us
+              <h2>Contact us</h2>
             </div>
           </div>
         </div>
@@ -155,12 +155,12 @@
   attribution: '&copy; OpenStreetMap contributors'
   }).addTo(map);
 
-const locations = [
+  const locations = [
   { lat: 51.4545, lng: -2.5879, name: 'Go-Go Bike Station 1' },
   { lat: 51.4605, lng: -2.5949, name: 'Go-Go Bike Station 2' },
   { lat: 51.4485, lng: -2.5809, name: 'Go-Go Bike Station 3' },
   { lat: 51.4565, lng: -2.5739, name: 'Go-Go Bike Station 4' }
-];
+  ];
 
 locations.forEach(location => {
   L.marker([location.lat, location.lng])
@@ -192,12 +192,11 @@ locations.forEach(location => {
         <footer class="footer">
           <div class="footer-container">
             <div class="text-center">
-              <p> 2025 Go-Go Bike. All rights reserved. This website is made by Jesslyn Laurent</p>
+              <p> 2025 Go-Go Bike. All rights reserved. This website is made by Jesslyn L.</p>
             </div>
             <div class="text-center">
                 <p>Privacy Policy</p>
                 <p>Terms of Service</p>
-                <p>Contact Us</p>
             </div>
           </div>
         </footer>
