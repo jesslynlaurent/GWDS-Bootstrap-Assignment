@@ -9,10 +9,34 @@
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
     <script src="js/bootstrap.min.js"></script>
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <script>
+      const map = L.map('map').setView([37.7749, -122.4194], 13);
 
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    attribution: '&copy; OpenStreetMap contributors'
+    }).addTo(map);
+
+    const locations = [
+    { lat: 51.4545, lng: -2.5879, name: 'Go-Go Bike Station 1' },
+    { lat: 51.4605, lng: -2.5949, name: 'Go-Go Bike Station 2' },
+    { lat: 51.4485, lng: -2.5809, name: 'Go-Go Bike Station 3' },
+    { lat: 51.4565, lng: -2.5739, name: 'Go-Go Bike Station 4' }
+    ];
+
+    locations.forEach(location => {
+    L.marker([location.lat, location.lng])
+    .addTo(map)
+    .bindPopup(`<b>${location.name}</b>`); 
+    });
+
+  </script>
 
 
   <style>
+
+    body {
+      background-color: rgba(53, 94, 59);
+    }
 
     #map {
     height: 400px;
@@ -22,9 +46,9 @@
     }
 
     .footer {
-    background-color: black;
-    color: white;
-    padding: 20px 0;
+    background-color: darkgray;
+    color: black;
+    padding: 50px 0;
     font-size: 14px;
     text-align: right;
     }
@@ -36,29 +60,58 @@
     max-width: 1200px;
     margin: 0 auto;
     padding: 0 20px;
+    box-shadow: 0 2px 10px grey;
     }
 
 
-    .carousel-item {
-            text-align: center;
-            padding: 20px;
-        }
-        .circle {
-            width: 100px;
-            height: 100px;
-            background-color: gray;
-            border-radius: 50%;
-            margin: auto;
-        }
-        .heading {
-            font-size: 1.5rem;
-            font-weight: bold;
-            margin-top: 10px;
-        }
-        .description {
-            font-size: 0.9rem;
-            color: gray;
-        }
+  .carousel-item {
+    text-align: center;
+    padding: 50px;
+    }
+
+  .circle {
+    width: 450px;
+    height: 300px;
+    background-color: gray;
+    border-radius: 50%;
+    margin: auto;
+    }
+
+  .heading {
+    font-size: 50px;
+    font-weight: bold;
+    margin-top: 10px;
+    }
+
+  .description {
+    font-size: 20px;
+    color: white;
+     }
+
+  .container-description {
+    background-color: white;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 50px;
+
+  }
+
+  .row {
+    text-align: center;
+    background-color: black;
+    color: white;
+    margin-bottom: 100px;
+    margin-top: 80px;
+    padding: 50px;
+  }
+
+  .carousel-inner{
+    padding: 20px;
+    box-shadow: 0 2px 10px grey;
+  }
+ 
+
+
     
 
 
@@ -146,33 +199,45 @@
                 </button>
               </div>
             </div>
+            
             <div class="container py-3">
+              <div class="container-description">
                 <h1 class="display-1 text-center">Safe & Healthier</h1>
                 <p class="lead text-center">🚲 Ride the City with Go-Go Bike! Fast, affordable, and eco-friendly!</p>
               </div>
-           </div>
+            </div>
+           
 
 
            <!-- carousel 2 -->
 
-           <div id="customCarousel" class="carousel slide" data-bs-ride="carousel">
+           <div id="carouselExampleDark" class="carousel carousel-dark slide" data-bs-ride="carousel">
             <div class="carousel-inner">
                 <div class="carousel-item active">
                     <div class="circle"></div>
-                    <div class="heading">Heading</div>
-                    <div class="description">Some representative placeholder</div>
+                    <div class="heading">Location</div>
+                    <div class="description">Find a Go-Go Bike Station Near You</div>
                 </div>
                 <div class="carousel-item">
                     <div class="circle"></div>
-                    <div class="heading">Heading</div>
-                    <div class="description">Another exciting bit of representation</div>
+                    <div class="heading">Rides</div>
+                    <div class="description">Find Out How to Rent Go-Go Bike</div>
                 </div>
                 <div class="carousel-item">
                     <div class="circle"></div>
-                    <div class="heading">Heading</div>
-                    <div class="description">And lastly this, the third column of</div>
+                    <div class="heading">Contact Us</div>
+                    <div class="description">Get in Touch with Us</div>
                 </div>
             </div>
+            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="prev">
+              <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+              <span class="visually-hidden">Previous</span>
+          </button>
+          <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="next">
+              <span class="carousel-control-next-icon" aria-hidden="true"></span>
+              <span class="visually-hidden">Next</span>
+          </button>
+      </div>
           
            
     
@@ -184,8 +249,6 @@
             <div class="col-md-4">
               <h2>Location</h2>
               <p>Find a Go-Go Bike Station Near You</p>
-              <div class="col-md-8"> </div>
-              <div id="map"></div>
             </div>
             <div class="col">
               <h2>Rides</h2>
@@ -196,27 +259,7 @@
           </div>
         </div>
 
-    <script>
-      const map = L.map('map').setView([37.7749, -122.4194], 13);
-
-  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-  attribution: '&copy; OpenStreetMap contributors'
-  }).addTo(map);
-
-  const locations = [
-  { lat: 51.4545, lng: -2.5879, name: 'Go-Go Bike Station 1' },
-  { lat: 51.4605, lng: -2.5949, name: 'Go-Go Bike Station 2' },
-  { lat: 51.4485, lng: -2.5809, name: 'Go-Go Bike Station 3' },
-  { lat: 51.4565, lng: -2.5739, name: 'Go-Go Bike Station 4' }
-  ];
-
-locations.forEach(location => {
-  L.marker([location.lat, location.lng])
-    .addTo(map)
-    .bindPopup(`<b>${location.name}</b>`); 
-});
-
-        </script>
+    
        
         <!-- End of row col -->
 

@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <title>Location</title>
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <style>
+
+      body{
+        background-color: rgb(53, 94, 59);
+      }
+      #map {
+        height: 400px;
+        background-color: black;
+        margin: 50px;
+        }
+
+      .heading {
+        font-size: 60px;
+        color: white;
+        font-weight: bold;
+        text-align: center;
+        margin-top: 20px;
+        }
+
+        .description {
+          font-size: 30px;
+          color: white;
+          text-align: center;
+          margin-bottom: 20px;
+        }
+
+        .container {
+        margin-top: 60px;
+        }
+
+    .footer {
+    background-color: darkgray;
+    color: black;
+    padding: 20px 0;
+    font-size: 14px;
+    text-align: right;
+    }
+
+  .footer-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    margin: 30px;
+    padding: 0 20px;
+    box-shadow: 0 2px 10px grey;
+    }
+
+    </style>
+</head>
+
+<body>
+
+  <nav class="navbar navbar-dark bg-dark navbar-expand-lg">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="#">
+            <img src= "./images/GWDSBOOTSTRAP_Logo.svg" alt="Logo" width="110" height="110" class="d-inline-block align-text-center">
+            Go-Go Bike
+          </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="#">Location</a>
+          </li>
+        </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Rides</a>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Contact</a>
+          
+         
+  </nav>
+
+    <div class="container">
+        <div class="heading">Location</div>
+        <div class="description">🗺️Find a Go-Go Bike Station Near You!</div>
+        <div id="map"></div>
+    </div>
+
+   
+   
+   
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+    <script>
+       
+        const map = L.map('map').setView([51.4545, -2.5879], 13); 
+
+       
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '&copy; OpenStreetMap contributors'
+        }).addTo(map);
+
+        
+        const locations = [
+            { lat: 51.4545, lng: -2.5879, name: 'Go-Go Bike Station 1' },
+            { lat: 51.4605, lng: -2.5949, name: 'Go-Go Bike Station 2' },
+            { lat: 51.4485, lng: -2.5809, name: 'Go-Go Bike Station 3' },
+            { lat: 51.4565, lng: -2.5739, name: 'Go-Go Bike Station 4' }
+        ];
+
+        
+        locations.forEach(location => {
+            L.marker([location.lat, location.lng])
+                .addTo(map)
+                .bindPopup(`<b>${location.name}</b>`); 
+        });
+    </script>
+
+
+<footer class="footer">
+  <div class="footer-container">
+    <div class="text-center">
+      <p> 2025 Go-Go Bike. All rights reserved. This website is made by Jesslyn L.</p>
+    </div>
+    <div class="text-center">
+        <p>Privacy Policy</p>
+        <p>Terms of Service</p>
+    </div>
+  </div>
+</footer>
+
+
+</body>
+
+</html>
+
+
+
