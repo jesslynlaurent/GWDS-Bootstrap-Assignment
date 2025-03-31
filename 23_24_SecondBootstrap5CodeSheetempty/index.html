@@ -31,13 +31,13 @@
 
     document.addEventListener("DOMContentLoaded", function() {
     document.getElementById('searchForm').addEventListener('submit', function(event) {
-        event.preventDefault(); // Prevent page reload
+        event.preventDefault(); 
 
         let searchValue = document.getElementById('searchInput').value.toLowerCase().trim();
-        let carouselElement = document.getElementById('carouselExampleDark'); // Target the carousel
-        let carousel = new bootstrap.Carousel(carouselElement, { interval: false }); // Disable auto-slide
+        let carouselElement = document.getElementById('carouselExampleDark'); 
+        let carousel = new bootstrap.Carousel(carouselElement, { interval: false }); 
 
-        // Map search terms to slide indexes
+        
         let slides = {
             "location": 0,
             "rides": 1,
@@ -46,7 +46,7 @@
 
         if (slides.hasOwnProperty(searchValue)) {
             let slideIndex = slides[searchValue];
-            carousel.to(slideIndex); // Move to the correct slide
+            carousel.to(slideIndex); 
         } else {
             alert('Slide not found! Try searching for "Location", "Rides", or "Contact".');
         }
