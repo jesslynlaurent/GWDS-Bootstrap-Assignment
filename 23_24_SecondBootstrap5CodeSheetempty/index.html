@@ -7,8 +7,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
-    <script src="js/bootstrap.min.js"></script>
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script src="js/bootstrap.min.js"></script>
   <script>
       const map = L.map('map').setView([37.7749, -122.4194], 13);
 
@@ -29,31 +29,30 @@
     .bindPopup(`<b>${location.name}</b>`); 
     });
 
+    document.addEventListener("DOMContentLoaded", function() {
     document.getElementById('searchForm').addEventListener('submit', function(event) {
-    event.preventDefault();
+        event.preventDefault(); // Prevent page reload
 
-    let searchValue = document.getElementById('searchInput').value.toLowerCase().trim();
-    let carouselElement = document.getElementById('carouselExampleDark'); 
+        let searchValue = document.getElementById('searchInput').value.toLowerCase().trim();
+        let carouselElement = document.getElementById('carouselExampleDark'); // Target the carousel
+        let carousel = new bootstrap.Carousel(carouselElement, { interval: false }); // Disable auto-slide
 
-    
-    let carouselInstance = new bootstrap.Carousel(carouselElement);
+        // Map search terms to slide indexes
+        let slides = {
+            "location": 0,
+            "rides": 1,
+            "contact": 2
+        };
 
-   
-    let slides = [
-        { keyword: "location", index: 0 },
-        { keyword: "rides", index: 1 },
-        { keyword: "contact", index: 2 }
-    ];
-
-    
-    let foundSlide = slides.find(slide => searchValue.includes(slide.keyword));
-
-    if (foundSlide) {
-        carouselInstance.to(foundSlide.index); 
-    } else {
-        alert('Slide not found! Try searching: "Location", "Rides", or "Contact".');
-    }
+        if (slides.hasOwnProperty(searchValue)) {
+            let slideIndex = slides[searchValue];
+            carousel.to(slideIndex); // Move to the correct slide
+        } else {
+            alert('Slide not found! Try searching for "Location", "Rides", or "Contact".');
+        }
+    });
 });
+
 
    
 
@@ -200,9 +199,10 @@
             </ul>
 
             <form class="d-flex" id="searchForm">
-                <input class="form-control me-2" type="search" placeholder="Search Slide..." aria-label="Search" id="searchInput">
-                <button class="btn btn-outline-success" type="submit">Search</button>
-            </form>
+              <input class="form-control me-2" type="search" placeholder="Search Slide..." aria-label="Search" id="searchInput">
+              <button class="btn btn-outline-success" type="submit">Search</button>
+          </form>
+          
         </div>
     </div>
 </nav>
@@ -254,86 +254,43 @@
 
            <!-- carousel 2 -->
 
-           <!-- <div id="carouselExampleDark" class="carousel-dark slide" data-bs-ride="carousel">
-              <div class="carousel-inner">
-                  <div class="carousel-item active" id="slide1">
-                      <div class="circle">
-                          <img src="images/location.jpeg" alt="Location">
-                      </div>
-                      <div class="heading">Location</div>
-                      <div class="description">Find a Go-Go Bike Station Near You</div> 
-                  </div>
-          
-                  <div class="carousel-item" id="slide2">
-                      <div class="circle">
-                          <img src="images/rides.jpeg" alt="Rides">
-                      </div>
-                      <div class="heading">Rides</div>
-                      <div class="description">Find Out How to Rent Go-Go Bike</div>
-                  </div>
-          
-                  <div class="carousel-item" id="slide3">
-                      <div class="circle">
-                          <img src="images/contactus.jpeg" alt="Contact Us">
-                      </div>
-                      <div class="heading">Contact Us</div>
-                      <div class="description">Get in Touch with Us</div>
-                  </div>
+     <div id="carouselExampleDark" class="carousel slide" data-bs-ride="false">
+      <div class="carousel-inner">
+          <div class="carousel-item active" id="slide-location">
+              <div class="circle">
+                  <img src="images/location.jpeg" alt="Location">
               </div>
-              <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="prev">
-                  <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                  <span class="visually-hidden">Previous</span>
-              </button>
-              <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="next">
-                  <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                  <span class="visually-hidden">Next</span>
-              </button>
+              <div class="heading">Location</div>
+              <div class="description">Find a Go-Go Bike Station Near You</div>
           </div>
-           -->
-
-           
-           <div id="carouselExampleDark" class="carousel slide" data-bs-ride="carousel">
-            <div class="carousel-inner">
-                <div class="carousel-item active" id="locationSlide">
-                    <div class="circle">
-                        <img src="images/location.jpeg" alt="Location">
-                    </div>
-                    <div class="heading">Location</div>
-                    <div class="description">Find a Go-Go Bike Station Near You</div>
-                </div>
-        
-                <div class="carousel-item" id="ridesSlide">
-                    <div class="circle">
-                        <img src="images/rides.jpeg" alt="Rides">
-                    </div>
-                    <div class="heading">Rides</div>
-                    <div class="description">Find Out How to Rent Go-Go Bike</div>
-                </div>
-        
-                <div class="carousel-item" id="contactSlide">
-                    <div class="circle">
-                        <img src="images/contactus.jpeg" alt="Contact Us">
-                    </div>
-                    <div class="heading">Contact Us</div>
-                    <div class="description">Get in Touch with Us</div>
-                </div>
-            </div>
-        
-            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="prev">
-                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                <span class="visually-hidden">Previous</span>
-            </button>
-            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="next">
-                <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                <span class="visually-hidden">Next</span>
-            </button>
-        </div>
-        
-
-
-          
-           
-    
+  
+          <div class="carousel-item" id="slide-rides">
+              <div class="circle">
+                  <img src="images/rides.jpeg" alt="Rides">
+              </div>
+              <div class="heading">Rides</div>
+              <div class="description">Find Out How to Rent Go-Go Bike</div>
+          </div>
+  
+          <div class="carousel-item" id="slide-contact">
+              <div class="circle">
+                  <img src="images/contactus.jpeg" alt="Contact Us">
+              </div>
+              <div class="heading">Contact Us</div>
+              <div class="description">Get in Touch with Us</div>
+          </div>
+      </div>
+  
+      <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="prev">
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Previous</span>
+      </button>
+      <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="next">
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Next</span>
+      </button>
+  </div>
+  
 
         <!-- Beginning of row col -->
 
