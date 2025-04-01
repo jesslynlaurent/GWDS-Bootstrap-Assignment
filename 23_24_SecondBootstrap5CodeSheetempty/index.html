@@ -29,33 +29,6 @@
     .bindPopup(`<b>${location.name}</b>`); 
     });
 
-    document.addEventListener("DOMContentLoaded", function() {
-    document.getElementById('searchForm').addEventListener('submit', function(event) {
-        event.preventDefault(); 
-
-        let searchValue = document.getElementById('searchInput').value.toLowerCase().trim();
-        let carouselElement = document.getElementById('carouselExampleDark'); 
-        let carousel = new bootstrap.Carousel(carouselElement, { interval: false }); 
-
-        
-        let slides = {
-            "location": 0,
-            "rides": 1,
-            "contact": 2
-        };
-
-        if (slides.hasOwnProperty(searchValue)) {
-            let slideIndex = slides[searchValue];
-            carousel.to(slideIndex); 
-        } else {
-            alert('Slide not found! Try searching for "Location", "Rides", or "Contact".');
-        }
-    });
-});
-
-
-   
-
   </script>
   
 
@@ -166,6 +139,11 @@
 
 </head>
 
+
+
+
+
+
 <body>
 
   
@@ -194,12 +172,12 @@
                     <a class="nav-link" href="#rides">Rides</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#contact-us">Contact Us</a>
+                    <a class="nav-link" href="#contact-us">Contact</a>
                 </li>
             </ul>
 
             <form class="d-flex" id="searchForm">
-              <input class="form-control me-2" type="search" placeholder="Search Slide..." aria-label="Search" id="searchInput">
+              <input class="form-control me-2" type="search" placeholder="Search..." aria-label="Search" id="searchInput">
               <button class="btn btn-outline-success" type="submit">Search</button>
           </form>
           
@@ -354,7 +332,31 @@
 
     <!-- this ends the main code -->
 
+<script>
+  document.addEventListener("DOMContentLoaded", function() {
+      document.getElementById('searchForm').addEventListener('submit', function(event) {
+          event.preventDefault(); 
+          
+          let searchValue = document.getElementById('searchInput').value.toLowerCase();
+          let carousel = document.getElementById('carouselExampleDark'); 
+          let carouselInstance = bootstrap.Carousel.getOrCreateInstance(carousel);
 
+         
+          if (searchValue.includes("location")) {
+              carouselInstance.to(0); 
+              document.getElementById('slide-location').scrollIntoView({behavior: 'smooth'});
+          } else if (searchValue.includes("rides")) {
+              carouselInstance.to(1); 
+              document.getElementById('slide-rides').scrollIntoView({behavior: 'smooth'});
+          } else if (searchValue.includes("contact")) {
+            carouselInstance.to(2); 
+            document.getElementById('slide-contact').scrollIntoView({behavior: 'smooth'});
+          } else {
+              alert("No matching section found!");
+          }
+      });
+  });
+</script>
 
     
 
